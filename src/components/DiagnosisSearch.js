@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./DiagnosisSearch.css";
 
 const DiagnosisSearch = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [suggestions, setSuggestions] = useState([]);
+  const navigate = useNavigate();
 
   // Simulated list of diagnosis suggestions
   const diagnoses = [
@@ -27,6 +30,11 @@ const DiagnosisSearch = () => {
     }
   };
 
+  const handleSelectDiagnosis = (diagnosis) => {
+    // Navigate to the Medication List screen with the selected diagnosis
+    navigate(`/medications/${diagnosis}`);
+  };
+
   return (
     <div className="diagnosis-search">
       <h2>Search for a Diagnosis</h2>
@@ -39,7 +47,9 @@ const DiagnosisSearch = () => {
       {suggestions.length > 0 && (
         <ul>
           {suggestions.map((suggestion, index) => (
-            <li key={index}>{suggestion}</li>
+            <li key={index} onClick={() => handleSelectDiagnosis(suggestion)}>
+            {suggestion}
+          </li>
           ))}
         </ul>
       )}
