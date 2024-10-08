@@ -1,11 +1,11 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import "./MedicationList.css";
 
 const MedicationList = () => {
-  const { diagnosis } = useParams(); // Get the selected diagnosis from the URL
+  const { diagnosis } = useParams();
+  const navigate = useNavigate();
 
-  // Simulated medication list for each diagnosis
   const medications = {
     Hypertension: ["Amlodipine", "Lisinopril", "Metoprolol"],
     "Diabetes Mellitus": ["Metformin", "Insulin", "Glipizide"],
@@ -14,12 +14,18 @@ const MedicationList = () => {
     "Coronary Artery Disease": ["Aspirin", "Clopidogrel", "Atorvastatin"],
   };
 
+  const handleMedicationClick = (medication) => {
+    navigate(`/medications/${diagnosis}/${medication}`);
+  };
+
   return (
     <div className="medication-list">
       <h2>Medications for {diagnosis}</h2>
       <ul>
         {medications[diagnosis]?.map((medication, index) => (
-          <li key={index}>{medication}</li>
+          <li key={index} onClick={() => handleMedicationClick(medication)}>
+            {medication}
+          </li>
         )) || <p>No medications found for this diagnosis.</p>}
       </ul>
     </div>
