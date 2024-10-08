@@ -1,0 +1,20 @@
+.medication-list {
+    margin: 20px;
+    text-align: center;
+  }
+  
+  .medication-list ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .medication-list li {
+    padding: 10px;
+    font-size: 18px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .medication-list li:hover {
+    background-color: #f0f0f0;
+  }
+  
