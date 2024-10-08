@@ -1,4 +1,3 @@
-// src/components/DiagnosisSearch.js
 import React, { useState } from "react";
 
 const DiagnosisSearch = () => {
