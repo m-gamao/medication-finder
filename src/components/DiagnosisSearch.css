@@ -1,0 +1,30 @@
+/* src/components/DiagnosisSearch.css */
+.diagnosis-search {
+    margin: 20px;
+    text-align: center;
+  }
+  
+  .diagnosis-search input {
+    padding: 10px;
+    width: 80%;
+    max-width: 400px;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .diagnosis-search ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .diagnosis-search li {
+    padding: 5px 0;
+    font-size: 18px;
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .diagnosis-search li:hover {
+    background-color: #f0f0f0;
+  }
+  
