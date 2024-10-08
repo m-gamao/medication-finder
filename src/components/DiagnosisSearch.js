@@ -1,58 +1,67 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import "./DiagnosisSearch.css";
+import { fetchDiagnoses } from '../services/diagnosisService';
 
 const DiagnosisSearch = () => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [suggestions, setSuggestions] = useState([]);
-  const navigate = useNavigate();
+    const [query, setQuery] = useState('');
+    const [diagnoses, setDiagnoses] = useState([]);
+//   const [searchTerm, setSearchTerm] = useState("");
+//   const [suggestions, setSuggestions] = useState([]);
+//   const navigate = useNavigate();
 
   // Simulated list of diagnosis suggestions
-  const diagnoses = [
-    "Hypertension",
-    "Diabetes Mellitus",
-    "Asthma",
-    "Chronic Obstructive Pulmonary Disease",
-    "Coronary Artery Disease",
-  ];
+//   const diagnoses = [
+//     "Hypertension",
+//     "Diabetes Mellitus",
+//     "Asthma",
+//     "Chronic Obstructive Pulmonary Disease",
+//     "Coronary Artery Disease",
+//   ];
 
-  const handleSearch = (event) => {
-    const value = event.target.value;
-    setSearchTerm(value);
+//   const handleSearch = (event) => {
+//     const value = event.target.value;
+//     setSearchTerm(value);
 
-    if (value.length > 0) {
-      const filteredSuggestions = diagnoses.filter((diagnosis) =>
-        diagnosis.toLowerCase().includes(value.toLowerCase())
-      );
-      setSuggestions(filteredSuggestions);
-    } else {
-      setSuggestions([]);
+//     if (value.length > 0) {
+//       const filteredSuggestions = diagnoses.filter((diagnosis) =>
+//         diagnosis.toLowerCase().includes(value.toLowerCase())
+//       );
+//       setSuggestions(filteredSuggestions);
+//     } else {
+//       setSuggestions([]);
+//     }
+//   };
+
+const handleSearch = async () => {
+    try {
+      const results = await fetchDiagnoses(query);
+      setDiagnoses(results); // Store the fetched diagnoses in state
+    } catch (error) {
+      console.error('Failed to fetch diagnoses:', error);
     }
   };
 
-  const handleSelectDiagnosis = (diagnosis) => {
-    // Navigate to the Medication List screen with the selected diagnosis
-    navigate(`/medications/${diagnosis}`);
-  };
+//   const handleSelectDiagnosis = (diagnosis) => {
+//     // Navigate to the Medication List screen with the selected diagnosis
+//     navigate(`/medications/${diagnosis}`);
+//   };
 
-  return (
-    <div className="diagnosis-search">
-      <h2>Search for a Diagnosis</h2>
+return (
+    <div>
       <input
         type="text"
-        value={searchTerm}
-        onChange={handleSearch}
-        placeholder="Enter diagnosis..."
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        placeholder="Search for a diagnosis"
       />
-      {suggestions.length > 0 && (
-        <ul>
-          {suggestions.map((suggestion, index) => (
-            <li key={index} onClick={() => handleSelectDiagnosis(suggestion)}>
-            {suggestion}
-          </li>
-          ))}
-        </ul>
-      )}
+      <button onClick={handleSearch}>Search</button>
+
+      <ul>
+        {diagnoses.map((diagnosis) => (
+          <li key={diagnosis.id}>{diagnosis.name}</li> // Adjust based on your data structure
+        ))}
+      </ul>
     </div>
   );
 };
