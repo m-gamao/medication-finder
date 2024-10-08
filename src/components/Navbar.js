@@ -1,4 +1,7 @@
 // src/components/Navbar.js
+// Todo: figure out why the logo isn't showing (from the public folder)
+// fix title color in the nav bar
+
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
@@ -8,7 +11,7 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="navbar-logo">
         <Link to="/">Medication Finder</Link>
-        <img src="path/to/logo.png" alt="Logo" className="navbar-logo-icon" />
+        <img src="../public/logo.jpg" alt="Logo" className="navbar-logo-icon" />
       </div>
       <ul className="navbar-links">
         <li>
