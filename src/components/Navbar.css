@@ -9,8 +9,10 @@
   .navbar-logo {
     font-size: 24px; /* Font size for the title */
     color: white; /* Change the color to white for better contrast */
+    font-weight: bold; /* Add boldness for emphasis */
     text-decoration: none;
   }
+  
   
   .navbar-links {
     list-style: none;
