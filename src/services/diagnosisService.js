@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'API_BASE_URL'; // Updated to the correct base URL
-const API_KEY = 'YOUR_API_KEY'; // Replace with actual API key
+const API_BASE_URL = 'API_BASE_URL'; 
+const API_KEY = 'YOUR_API_KEY'; 
 
 // Function to fetch diagnoses based on a search term
 export const fetchDiagnoses = async (query) => {
