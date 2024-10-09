@@ -1,16 +1,17 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'https://api.example.com/'; // Replace with my chosen API base URL
+const API_BASE_URL = 'API_BASE_URL'; // Updated to the correct base URL
+const API_KEY = 'YOUR_API_KEY'; // Replace with actual API key
 
 // Function to fetch diagnoses based on a search term
 export const fetchDiagnoses = async (query) => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/diagnoses`, {
+    const response = await axios.get(`${API_BASE_URL}/search/${query}`, {
       params: {
-        search: query,
+        key: API_KEY, // Send the API key as a query parameter
       },
     });
-    return response.data; // Adjust based on the API response structure
+    return response.data; // Adjust based on your API response structure
   } catch (error) {
     console.error('Error fetching diagnoses:', error);
     throw error; // Rethrow or handle the error appropriately
